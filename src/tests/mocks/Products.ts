@@ -7,6 +7,14 @@ export const productMock: IProduct = {
 }
 
 export const listProductsMock: IProduct[] = [
-  productMock,
-  productMock,
+  {
+    id: 1,
+    name: 'usermock',
+    price: 2563
+  },
+  {
+    id: 2,
+    name: 'usermock',
+    price: 115
+  },
 ]

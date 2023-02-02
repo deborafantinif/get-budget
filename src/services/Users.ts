@@ -7,7 +7,6 @@ import ProductsService from "./Products";
 
 export default class UsersService implements IService<IUser> {
   public async read(): Promise<IUser[]> {
-    console.log('caiu')
     const data = await axios({
       method: 'get',
       url: process.env.URL_USERS as string,
@@ -18,7 +17,7 @@ export default class UsersService implements IService<IUser> {
   public async readOne(id: number): Promise<IUser> {
     const data = await this.read();
     const user = data.filter((u) => u.id == id);
-    if (!user) throw new Error(ErrorTypes.NotFound);
+    if (user.length == 0) throw new Error(ErrorTypes.NotFound);
     return user[0];
   }
 
