@@ -7,6 +7,7 @@ import ProductsService from "./Products";
 
 export default class UsersService implements IService<IUser> {
   public async read(): Promise<IUser[]> {
+    console.log('caiu')
     const data = await axios({
       method: 'get',
       url: process.env.URL_USERS as string,
