@@ -1,6 +1,11 @@
 import { z } from 'zod';
 
 const userZodSchema = z.object({
+  id: z
+  .number({
+    required_error: "id is required",
+    invalid_type_error: "id must be a number",
+  }),
   name: z
     .string({
       required_error: "name is required",
