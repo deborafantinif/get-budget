@@ -7,7 +7,7 @@ export default class ProductsService implements IService<IProduct> {
     const data = await axios({
       method: 'get',
       url: process.env.URL_PRODUCTS as string,
-    }).then(data => data.data) as unknown as IProduct[];
+    }).then(data => data.data);
     return data;
   }
 }
