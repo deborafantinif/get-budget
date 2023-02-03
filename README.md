@@ -6,7 +6,9 @@
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-execução">Instalação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-testes">Testes</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="#-testes">Testes</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-endpoints">End-Points</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 </p>
 
 <br>
@@ -58,24 +60,18 @@ Aplicação que realiza o middleware de uma API(mockend) de listagem de produtos
 
 
 ## End-Points
-| Method | End-Point | Description |
+| Método | End-Point | Descrição |
 | --- | --- | --- |
 | `GET` | `/products` | Lista todos os *produtos* |
 | `GET` | `/users` | Lista todos os *usuários* |
 | `POST` | `/users/:id/budget` | Retorna o orçamento de acordo com os pedidos selecionados |
 
 
-## Request & Response Examples
-
-### API Resources
-  - [GET /products](#get-products)
-  - [GET /users/](#get-users)
-  - [POST /users/:id/budget](#post-userBudget)
-
+## Requisição & Exemplos de Resposta
 
 ### GET /products
 Lista todos os *produtos*
-#### Example Url
+#### Exemplo de Url
 `http://localhost:3001/products`
 #### Request Params
 `N/A`
@@ -86,7 +82,7 @@ Lista todos os *produtos*
 [
   {
 		"id": 1,
-		"name": "explicabo alias hic reprehenderit deleniti quos id reprehenderit consequuntur ipsam iure voluptatem ea culpa excepturi ducimus repudiandae ab",
+		"name": "explicabo alias hic reprehenderit deleniti quos id reprehenderit",
 		"price": 6945
 	},
 	{
@@ -105,7 +101,7 @@ Lista todos os *produtos*
 
 ### GET /users
 Lista todos os *usuários*
-#### Example Url
+#### Exemplo de Url
 `http://localhost:3001/users`
 #### Request Params
 `N/A`
@@ -134,7 +130,7 @@ Lista todos os *usuários*
 
 ### POST /users/:id/budget
 Retorna o orçamento de acordo com os pedidos selecionados
-#### Example Url
+#### Exemplo de Url
 `http://localhost:3001/users/{{ID}}/budget`
 #### Request Params
 `{{ID}}`
