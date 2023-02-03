@@ -3,7 +3,7 @@ import { ErrorRequestHandler } from 'express';
 
 import { ZodError } from 'zod';
 
-const errorHandler: ErrorRequestHandler = (err: Error | ZodError, _req, res, _next) => {
+const errorHandler: ErrorRequestHandler = (err: Error | ZodError, _req, res,) => {
   if (err instanceof ZodError) {
     return res.status(400).json({ error: err.issues[0].message });
   }
@@ -17,6 +17,7 @@ const errorHandler: ErrorRequestHandler = (err: Error | ZodError, _req, res, _ne
     return res.status(httpStatus).json({ error });
   }
 
+  // eslint-disable-next-line no-console
   console.error(err);
   return res.status(500).json({ message: 'internal error' });
 };

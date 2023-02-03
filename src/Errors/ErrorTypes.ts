@@ -4,7 +4,7 @@ export enum ErrorTypes {
 
 type ErrorResponseObject = { 
   error: string;
-  httpStatus: number
+  httpStatus: number;
 };
 
 export type ErrorCatalog = Record<ErrorTypes, ErrorResponseObject>;

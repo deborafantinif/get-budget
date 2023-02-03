@@ -11,7 +11,7 @@ describe('Test Controller Users', () => {
   const usersService = new UsersService(productsService);
   const usersController = new UsersController(usersService);
 
-  const req = {} as Request
+  const req = {} as Request;
   const res = {} as Response;
 
   beforeEach(() => {
@@ -30,8 +30,8 @@ describe('Test Controller Users', () => {
       
       await usersController.read(req, res);
 
-      const statusStub = res.status as sinon.SinonStub
-      const jsonStub = res.json as sinon.SinonStub
+      const statusStub = res.status as sinon.SinonStub;
+      const jsonStub = res.json as sinon.SinonStub;
 
       expect(statusStub.calledWith(200)).to.be.true;
       expect(jsonStub.calledWith(listUsersMock)).to.be.true;
@@ -43,16 +43,15 @@ describe('Test Controller Users', () => {
       sinon.stub(usersService, 'readOne').resolves(userMock);
       sinon.stub(usersService, 'getBudget').resolves('1151.54');
       
-      req.params = { id: userMock.id.toString() }
-      req.body = { products: [1, 2] }
+      req.params = { id: userMock.id.toString() };
+      req.body = { products: [1, 2] };
       await usersController.getBudget(req, res);
 
-      const statusStub = res.status as sinon.SinonStub
-      const jsonStub = res.json as sinon.SinonStub
+      const statusStub = res.status as sinon.SinonStub;
+      const jsonStub = res.json as sinon.SinonStub;
 
       expect(statusStub.calledWith(200)).to.be.true;
       expect(jsonStub.calledWith('1151.54')).to.be.true;
     })
   })
-
 })

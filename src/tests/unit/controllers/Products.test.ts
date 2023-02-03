@@ -9,8 +9,8 @@ describe('Test Controller Products', () => {
   const productsService = new ProductsService();
   const productsController = new ProductsController(productsService);
 
-  const req = {} as Request
-  const res = {} as Response
+  const req = {} as Request;
+  const res = {} as Response;
 
   beforeEach(() => {
     res.status = sinon.stub().returns(res);
@@ -28,8 +28,8 @@ describe('Test Controller Products', () => {
       
       await productsController.read(req, res);
 
-      const statusStub = res.status as sinon.SinonStub
-      const jsonStub = res.json as sinon.SinonStub
+      const statusStub = res.status as sinon.SinonStub;
+      const jsonStub = res.json as sinon.SinonStub;
 
       expect(statusStub.calledWith(200)).to.be.true;
       expect(jsonStub.calledWith(listProductsMock)).to.be.true;

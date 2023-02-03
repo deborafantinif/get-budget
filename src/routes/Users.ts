@@ -7,7 +7,7 @@ const productsService = new ProductsService();
 const usersService = new UsersService(productsService);
 const usersController = new UsersController(usersService);
 
-const routeUsers = Router()
+const routeUsers = Router();
 
 routeUsers.route("/:id/budget").get((req, res) => usersController.getBudget(req, res));
 

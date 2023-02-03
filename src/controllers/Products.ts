@@ -11,6 +11,6 @@ export default class productsController {
 
   public async read(_req: Request, res: Response<IProduct[]>) {
     const getAll = await this._productsService.read();
-    return res.status(200).json(getAll)
+    return res.status(200).json(getAll);
   }
 }

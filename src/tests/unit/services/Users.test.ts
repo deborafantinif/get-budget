@@ -2,7 +2,6 @@ import UsersService from "../../../services/Users"
 import * as sinon from 'sinon';
 import axios from "axios";
 import { expect } from 'chai';
-import { Done } from "mocha";
 import { listUsersMock, userMock } from "../../mocks/Users";
 import { ErrorTypes } from "../../../Errors/ErrorTypes";
 import ProductsService from "../../../services/Products";
@@ -20,19 +19,19 @@ describe('Test Service Users', () => {
     it('successfully list users', async() => {
       sinon.stub( axios,'get').resolves(Promise.resolve({data: listUsersMock}));
 
-      const listUsers = await usersService.read()
+      const listUsers = await usersService.read();
 
-      expect(listUsers).to.be.deep.eq(listUsersMock)
-      expect(listUsers).to.be.an('array')
+      expect(listUsers).to.be.deep.eq(listUsersMock);
+      expect(listUsers).to.be.an('array');
     });
 
     it('should list an empty array if there are no users', async () => {
       sinon.stub( axios,'get').resolves(Promise.resolve({data: []}));
 
-      const listUsers = await usersService.read()
+      const listUsers = await usersService.read();
 
-      expect(listUsers).to.be.length(0)
-      expect(listUsers).to.be.an('array')
+      expect(listUsers).to.be.length(0);
+      expect(listUsers).to.be.an('array');
     });
   })
 
@@ -40,9 +39,9 @@ describe('Test Service Users', () => {
     it('successfully list one user', async () => {
       sinon.stub(usersService, 'read').resolves(listUsersMock);
 
-      const getOne = await usersService.readOne(userMock.id)
-      expect(getOne).to.be.deep.eq(userMock)
-      expect(getOne).to.be.an('object')
+      const getOne = await usersService.readOne(userMock.id);
+      expect(getOne).to.be.deep.eq(userMock);
+      expect(getOne).to.be.an('object');
     }); 
 
     it('should fail if product not found', async () => {
@@ -63,8 +62,8 @@ describe('Test Service Users', () => {
       sinon.stub( productsService,'read').resolves(listProductsMock);
 
       const budget = await usersService.getBudget(userMock, [1])
-      expect(budget).to.be.deep.eq('1102.09')
-      expect(budget).to.be.an('string')
+      expect(budget).to.be.deep.eq('1102.09');
+      expect(budget).to.be.an('string');
     })
   })
 })
