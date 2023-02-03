@@ -9,7 +9,7 @@ const usersController = new UsersController(usersService);
 
 const routeUsers = Router();
 
-routeUsers.route("/:id/budget").get((req, res) => usersController.getBudget(req, res));
+routeUsers.route("/:id/budget").post((req, res) => usersController.getBudget(req, res));
 
 routeUsers.route("/").get((req, res) => usersController.read(req, res));
 

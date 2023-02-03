@@ -1,4 +1,4 @@
-import { errorCatalog, ErrorTypes } from '../Errors/ErrorTypes';
+import { errorCatalog, ErrorTypes } from '../errors/ErrorTypes';
 import { ErrorRequestHandler } from 'express';
 
 import { ZodError } from 'zod';

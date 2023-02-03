@@ -4,7 +4,8 @@ import { IService } from "interfaces/IService";
 
 export default class ProductsService implements IService<IProduct> {
   public async read(): Promise<IProduct[]> {
-    const data = await axios.get(process.env.URL_PRODUCTS as string).then(data => data.data);
+    const URL = process.env.URL_PRODUCTS || 'https://mockend.com/juunegreiros/BE-test-api/products'
+    const data = await axios.get(URL).then(data => data.data);
     return data;
   }
 }

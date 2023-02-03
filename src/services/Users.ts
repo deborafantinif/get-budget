@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ErrorTypes } from "../Errors/ErrorTypes";
+import { ErrorTypes } from "../errors/ErrorTypes";
 import { IBudget } from "interfaces/IBudget";
 import { IService } from "interfaces/IService";
 import { IUser } from "interfaces/IUsers";
@@ -13,7 +13,8 @@ export default class UsersService implements IService<IUser> {
   }
 
   public async read(): Promise<IUser[]> {
-    const data = await axios.get(process.env.URL_USERS as string).then(data => data.data);
+    const URL = process.env.URL_USERS || 'https://mockend.com/juunegreiros/BE-test-api/users'
+    const data = await axios.get(URL).then(data => data.data);
     return data;
   }
 
