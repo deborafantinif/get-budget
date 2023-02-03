@@ -4,13 +4,17 @@ import { IBudget } from "interfaces/IBudget";
 import { IService } from "interfaces/IService";
 import { IUser } from "interfaces/IUsers";
 import ProductsService from "./Products";
+import { IProduct } from "interfaces/IProduct";
 
 export default class UsersService implements IService<IUser> {
+  protected _productsService: IService<IProduct>;
+
+  constructor(service: IService<IProduct>) {
+    this._productsService = service;
+  }
+
   public async read(): Promise<IUser[]> {
-    const data = await axios({
-      method: 'get',
-      url: process.env.URL_USERS as string,
-    }).then(data => data.data);
+    const data = await axios.get(process.env.URL_USERS as string).then(data => data.data);
     return data;
   }
 
@@ -22,8 +26,7 @@ export default class UsersService implements IService<IUser> {
   }
 
   public async getBudget(user: IUser, productsSelected: number[]): Promise<IBudget> {
-    const productsService = new ProductsService()
-    const products = await productsService.read();
+    const products = await this._productsService.read();
     const productsFilters = products.filter((product) => productsSelected.includes(product.id))
     let budget = 0;
     for (const product of productsFilters) {

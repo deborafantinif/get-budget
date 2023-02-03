@@ -4,9 +4,11 @@ import { expect } from 'chai';
 import UsersService from '../../../services/Users';
 import UsersController from '../../../controllers/Users';
 import { listUsersMock, userMock } from '../../mocks/Users';
+import ProductsService from '../../../services/Products';
 
 describe('Test Controller Users', () => {
-  const usersService = new UsersService();
+  const productsService = new ProductsService();
+  const usersService = new UsersService(productsService);
   const usersController = new UsersController(usersService);
 
   const req = {} as Request

@@ -9,34 +9,30 @@ import ProductsService from "../../../services/Products";
 import { listProductsMock } from "../../mocks/Products";
 
 describe('Test Service Users', () => {
-  const usersService = new UsersService();
-  const productService = new ProductsService();
+  const productsService = new ProductsService();
+  const usersService = new UsersService(productsService);
 
   beforeEach(async () => {
     sinon.restore();
   });
 
   describe('List all users', () => {
-    it('successfully list users', (done: Done) => {
-      sinon.stub( axios,'get').resolves(Promise.resolve(listUsersMock));
+    it('successfully list users', async() => {
+      sinon.stub( axios,'get').resolves(Promise.resolve({data: listUsersMock}));
 
-      const listUsers = usersService.read()
-        .then(() => {
-          expect(listUsers).to.be.deep.eq(listUsersMock)
-          expect(listUsers).to.be.an('array')
-        })
-      done()
+      const listUsers = await usersService.read()
+
+      expect(listUsers).to.be.deep.eq(listUsersMock)
+      expect(listUsers).to.be.an('array')
     });
 
-    it('should list an empty array if there are no users', (done: Done) => {
-      sinon.stub( axios,'get').resolves(Promise.resolve([]));
+    it('should list an empty array if there are no users', async () => {
+      sinon.stub( axios,'get').resolves(Promise.resolve({data: []}));
 
-      const listUsers = usersService.read()
-        .then(() => {
-          expect(listUsers).to.be.length(0)
-          expect(listUsers).to.be.an('array')
-        })
-      done()
+      const listUsers = await usersService.read()
+
+      expect(listUsers).to.be.length(0)
+      expect(listUsers).to.be.an('array')
     });
   })
 
@@ -63,14 +59,12 @@ describe('Test Service Users', () => {
   })
 
   describe('Budget by selected products', () => {
-    it('return budget of selected products', (done: Done) => {
-      sinon.stub( productService,'read').resolves(listProductsMock);
+    it('return budget of selected products', async() => {
+      sinon.stub( productsService,'read').resolves(listProductsMock);
 
-      const budget = usersService.getBudget(userMock, [1]).then(() => {
-          expect(budget).to.be.deep.eq('1102.08')
-          expect(budget).to.be.an('string')
-        })
-      done()
+      const budget = await usersService.getBudget(userMock, [1])
+      expect(budget).to.be.deep.eq('1102.09')
+      expect(budget).to.be.an('string')
     })
   })
 })

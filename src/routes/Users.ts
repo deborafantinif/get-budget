@@ -1,8 +1,10 @@
 import UsersController from "../controllers/Users";
 import { Router } from "express";
 import UsersService from "../services/Users";
+import ProductsService from "../services/Products";
 
-const usersService = new UsersService();
+const productsService = new ProductsService();
+const usersService = new UsersService(productsService);
 const usersController = new UsersController(usersService);
 
 const routeUsers = Router()
